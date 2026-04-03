@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apartman Arıza ve Duyuru Sistemi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      scroll-behavior: smooth;
+      background-color: #f5f5f5;
+    }
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 50px 20px;
+      max-width: 800px;
+      margin: auto;
+      background-color: white;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #34495e;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background: #ecf0f1;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 5px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    input, textarea, button {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background-color: #2980b9;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #3498db;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Apartman Arıza ve Duyuru Sistemi</h1>
+  <nav>
+    <a href="#duyurular">Duyurular</a>
+    <a href="#ariza">Arıza Bildirimi</a>
+    <a href="#iletisim">İletişim</a>
+  </nav>
+</header>
+
+<section id="duyurular">
+  <h2>Duyurular</h2>
+  <ul id="duyuruListesi">
+    <li>Asansör bakımı 10 Nisan tarihinde yapılacaktır.</li>
+    <li>Su kesintisi 12 Nisan günü 09:00-12:00 arası.</li>
+  </ul>
+</section>
+
+<section id="ariza">
+  <h2>Arıza Bildirimi</h2>
+  <form id="arizaForm">
+    <input type="text" id="isim" placeholder="Adınız Soyadınız" required>
+    <input type="text" id="daire" placeholder="Daire No" required>
+    <textarea id="aciklama" placeholder="Arıza Açıklaması" rows="4" required></textarea>
+    <button type="submit">Gönder</button>
+  </form>
+  <h3>Gönderilen Arızalar:</h3>
+  <ul id="arizaListesi"></ul>
+</section>
+
+<section id="iletisim">
+  <h2>İletişim</h2>
+  <p>Email: apartman@example.com</p>
+  <p>Telefon: 0555 555 55 55</p>
+</section>
+
+<script>
+  const arizaForm = document.getElementById('arizaForm');
+  const arizaListesi = document.getElementById('arizaListesi');
+
+  arizaForm.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const isim = document.getElementById('isim').value;
+    const daire = document.getElementById('daire').value;
+    const aciklama = document.getElementById('aciklama').value;
+
+    const li = document.createElement('li');
+    li.textContent = `${isim} (${daire}): ${aciklama}`;
+    arizaListesi.appendChild(li);
+
+    arizaForm.reset();
+  });
+</script>
+
+</body>
+</html>
